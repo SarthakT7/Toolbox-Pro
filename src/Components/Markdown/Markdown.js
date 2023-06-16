@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import { marked } from "marked";
+import DOMPurify from "dompurify";
+
 const Markdown = () => {
   const [inputData, setInputData] = useState("");
   const [outputData, setOutputData] = useState("");
@@ -27,7 +29,7 @@ const Markdown = () => {
       padding: "10px",
       borderRadius: "4px",
       background: "#f9f9f9",
-      innerHeight: "3"
+      innerHeight: "3",
     },
   };
 
@@ -36,7 +38,7 @@ const Markdown = () => {
       <Container>
         <Box textAlign="center" m={2}>
           <Button variant="contained" onClick={handleSubmit}>
-            Show Preview
+            Show Markdown Preview
           </Button>
         </Box>
 
@@ -53,12 +55,12 @@ const Markdown = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Box sx={{ height: '100%' }} style={styles.box}>
-            <Typography
-              contentEditable={false}
-              style={styles.typography}
-              dangerouslySetInnerHTML={{ __html: outputData }}
-            />
+            <Box sx={{ height: "100%" }} style={styles.box}>
+              <Typography
+                contentEditable={false}
+                style={styles.typography}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(outputData) }}
+              />
             </Box>
           </Grid>
         </Grid>

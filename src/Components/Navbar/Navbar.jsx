@@ -14,10 +14,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 const navItems = ["Markdown Viewer", "JSON Formatter", "XML Formatter"];
-const navLinks = ["/markdown", "jsonformatter", "xmlformatter"];
+const navLinks = ["/markdown", "/jsonformatter", "/xmlformatter"];
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -25,6 +26,13 @@ function Navbar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('');
+  };
+
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -64,9 +72,10 @@ function Navbar(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={handleLogoClick}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, cursor:"pointer"}}
           >
-            LOGO
+            Toolbox Pro
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item, index) => (

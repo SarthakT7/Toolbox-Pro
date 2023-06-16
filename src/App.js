@@ -11,6 +11,7 @@ function App() {
       <Navbar/>
         <Routes>
           <Route path="/" exact Component={Markdown} />
+          <Route path="/markdown" exact Component={Markdown} />
           <Route path="/jsonformatter" exact Component={Jsonformatter} />
 
         </Routes>
