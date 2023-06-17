@@ -17,8 +17,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ["Markdown Viewer", "JSON Formatter", "XML Formatter"];
-const navLinks = ["/markdown", "/jsonformatter", "/xmlformatter"];
+const navItems = ["Markdown Viewer", "JSON Formatter","XML Formatter"];
+const navLinks = ["/markdown", "/jsonformatter", "/xmlformatter" ];
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

@@ -8,15 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
-
+import xmlFormat from "xml-formatter";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
-const Jsonformatter = () => {
+const XmlFormatter = () => {
   const [inputData, setInputData] = useState("");
   const [outputData, setOutputData] = useState("");
-  const [isValidJSON, setValidity] = useState(true);
+  const [isValidXML, setValidity] = useState(true);
   const [isEmpty, setEmpty] = useState(true);
   const [isEmptyFlag, setEmptyFlag] = useState(false);
-
   const handleInputChange = (event) => {
     const data = event.target.value;
     setInputData(data);
@@ -33,9 +32,10 @@ const Jsonformatter = () => {
         setEmptyFlag(true);
         return;
       }
+
       setEmptyFlag(false);
-      const jsonData = JSON.parse(inputData);
-      setOutputData(JSON.stringify(jsonData, null, 2));
+      const xmlData = xmlFormat(inputData);
+      setOutputData(xmlData);
       setValidity(true);
     } catch (error) {
       setValidity(false);
@@ -56,14 +56,14 @@ const Jsonformatter = () => {
       <Container>
         <Box textAlign="center" m={2}>
           <Button variant="contained" onClick={handleSubmit}>
-            Show Formatted JSON
+            Show Formatted XML
           </Button>
         </Box>
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
-              label="Insert dirty JSON"
+              label="Insert dirty XML"
               multiline
               rows={40}
               value={inputData}
@@ -73,11 +73,8 @@ const Jsonformatter = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Box
-              sx={{ height: isValidJSON ? "100%" : "8%" }}
-              style={styles.box}
-            >
-              {isValidJSON && !isEmptyFlag && (
+            <Box sx={{ height: isValidXML ? "100%" : "8%" }} style={styles.box}>
+              {isValidXML && !isEmptyFlag && (
                 <>
                   <CopyToClipboard style={styles.copy} data={outputData} />
                   <Typography>
@@ -85,13 +82,14 @@ const Jsonformatter = () => {
                   </Typography>
                 </>
               )}
-              {!isValidJSON && !isEmptyFlag && (
+              {!isValidXML && !isEmptyFlag && (
                 <Alert severity="error">
-                  JSON format is invalid. Check it and try again!
+                  XML format is invalid. Check it and try again!
                 </Alert>
               )}
+
               {isEmptyFlag && (
-                <Alert severity="error">No JSON content found. Please enter valid JSON data.</Alert>
+                <Alert severity="error">No XML content found. Please enter valid XML data.</Alert>
               )}
             </Box>
           </Grid>
@@ -101,4 +99,4 @@ const Jsonformatter = () => {
   );
 };
 
-export default Jsonformatter;
+export default XmlFormatter;
