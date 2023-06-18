@@ -21,7 +21,7 @@ const Jsonformatter = () => {
     const data = event.target.value;
     setInputData(data);
 
-    if (data == "") setEmpty(true);
+    if (data === "") setEmpty(true);
     else setEmpty(false);
   };
 
@@ -46,7 +46,6 @@ const Jsonformatter = () => {
       border: "1px solid #ccc",
       padding: "10px",
       borderRadius: "4px",
-      background: "#f9f9f9",
       innerHeight: "3",
     },
   };
@@ -74,7 +73,7 @@ const Jsonformatter = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Box
-              sx={{ height: isValidJSON ? "100%" : "8%" }}
+              sx={{ height: isValidJSON && !isEmptyFlag ? "100%" : "8%" }}
               style={styles.box}
             >
               {isValidJSON && !isEmptyFlag && (

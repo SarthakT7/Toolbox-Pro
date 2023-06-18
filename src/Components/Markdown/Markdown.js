@@ -28,7 +28,6 @@ const Markdown = () => {
       border: "1px solid #ccc",
       padding: "10px",
       borderRadius: "4px",
-      background: "#f9f9f9",
       innerHeight: "3",
     },
   };
@@ -57,8 +56,6 @@ const Markdown = () => {
           <Grid item xs={12} sm={6}>
             <Box sx={{ height: "100%" }} style={styles.box}>
               <Typography
-                contentEditable={false}
-                style={styles.typography}
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(outputData) }}
               />
             </Box>

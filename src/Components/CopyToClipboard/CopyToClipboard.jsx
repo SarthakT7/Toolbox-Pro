@@ -17,7 +17,7 @@ const CopyToClipboard = (props) => {
       </IconButton>
       </Tooltip>
       <Snackbar
-        message="Copied to clibboard"
+        message="Copied to clipboard"
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         autoHideDuration={2000}
         onClose={() => setOpen(false)}

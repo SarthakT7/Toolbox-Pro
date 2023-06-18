@@ -20,7 +20,7 @@ const XmlFormatter = () => {
     const data = event.target.value;
     setInputData(data);
 
-    if (data == "") setEmpty(true);
+    if (data === "") setEmpty(true);
     else setEmpty(false);
   };
 
@@ -46,7 +46,6 @@ const XmlFormatter = () => {
       border: "1px solid #ccc",
       padding: "10px",
       borderRadius: "4px",
-      background: "#f9f9f9",
       innerHeight: "3",
     },
   };
@@ -73,7 +72,7 @@ const XmlFormatter = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Box sx={{ height: isValidXML ? "100%" : "8%" }} style={styles.box}>
+            <Box sx={{ height: isValidXML && !isEmptyFlag ? "100%" : "8%" }} style={styles.box}>
               {isValidXML && !isEmptyFlag && (
                 <>
                   <CopyToClipboard style={styles.copy} data={outputData} />
